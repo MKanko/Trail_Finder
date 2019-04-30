@@ -1,0 +1,72 @@
+CLI Data Gem Portfolio Project
+
+CLI App Name: Trail Finder
+
+Description: CLI App for Mountain Bikers use in finding trails to ride.
+
+
+When Trail Finder runs it will:
+
+1. Welcome the user - with prompt instuctions for use to find mountain bike trails 
+                      in the Bend area that match the users mountain biking 
+                      skill level.
+
+2. Prompt user to select their skill level - beginner, intermediate, expert.
+
+3. List mountain biking trails, by name, that match the users skill level selection.
+
+4. Prompt the user to select option "Trail Information" for each listed trail. 
+
+5. List information about a specific trail, to include trail length, condition
+   (open/closed, riding well), elevation, and physical description of trail.
+
+6. Prompt user to exit?
+
+
+
+Trail Finder Domain:
+
+class CLIController
+class Scraper
+class SkillLevel        SkillLevel has many Trails
+class Trail             Trails belong to SkillLevel
+
+Note - scraping to create new objects (class Trail) with the data scraped.
+
+
+
+Build stategy notes:
+
+Keep it simple but effective in meeting requirements.
+
+Remember the single responsibility principle. Each piece of code -
+method, class, etc. is responsible for one thing. The CLI Controller 
+is resposible for interfacing with the user, if you are puts or gets
+input anywhere else in the program, you are violating the single
+responsibility principle.
+
+Build the CLI first using hard coded fake data. The CLI will determine
+needs and how to build the other models in the domain.
+
+Use Colorize gem to color the text of the trail names according to skill level
+beginner-green, intermediate-blue, expert-red.
+
+Write code that is prepared to deal with nonsense text, negative numbers,
+blank or incorrect input. During project assessment they will try to 
+break your code with these.
+
+The core of the project is:
+
+object orientation
+object collaboration
+scraping to create new objects with the data acquired
+
+Supporting Website: https://bendtrails.org/
+
+Focus on "East of Bend" section only.
+
+HTML Code Div Structure:
+
+Trail Group
+   Trail List
+      Trail Row
