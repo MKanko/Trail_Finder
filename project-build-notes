@@ -2,7 +2,7 @@ CLI Data Gem Portfolio Project
 
 CLI App Name: Trail Finder
 
-Description: CLI App for Mountain Bikers use in finding trails to ride.
+Description: CLI App for Mountain Bikers use in finding local Mountain Biking Trails to ride.
 
 
 When Trail Finder runs it will:
@@ -24,6 +24,19 @@ When Trail Finder runs it will:
 
 
 
+Basic outline notes on how to build CLI Gem:
+
+1. Plan gem, imagine how the interface (cli-controller.rb) will work.
+2. Start with project structure - google.
+3. Start with the entry point - file run.
+4. File run should build the CLI interface.
+5. Stub out the interface.
+6. Start making things real.
+7. Discover objects.
+8. Program.
+
+
+
 Trail Finder Domain:
 
 class CLIController
@@ -31,7 +44,7 @@ class Scraper
 class SkillLevel        SkillLevel has many Trails
 class Trail             Trails belong to SkillLevel
 
-Note - scraping to create new objects (class Trail) with the data scraped.
+Note - scraping to create new objects (instances of class Trail) with the data scraped.
 
 
 
