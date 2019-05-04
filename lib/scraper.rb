@@ -16,53 +16,74 @@ class Scraper
 
     doc = Nokogiri::HTML(open("https://bendtrails.org/"))
 
-      doc.css("div#trail_list_19").css("div.trail_row").each do |trail_row|
-        #trail = Trail.new
-        trail_name = trail_row.css("div.trail_name").text
-        condition = trail_row.css("div.trail_status").text
-        length = trail_row.css("div.trail_length").text 
-        elevation = trail_row.css("div.trail_elevation").text
-        binding.pry  
-      end
+            #("div#trail_list_view").css
+      # doc.css("div#trail_index").children.css("div.trail_group").each do |trail_group|    # This returns the first region name only, 
+      #   region = trail_group.css("h3.toggle").text                                        # will not iterate because of JS toggle 
+                                                                                            # event listener 
+        trail_list = []
+        trail_collection = []
 
-      # Navigate headless browser to desired site
+        doc.css("div#trail_list_19").css("div.trail_row").each do |trail_row| 
+          trail_name = trail_row.css("div.trail_name").text 
+          trail_list << trail_name
+        end
 
-      # @@browser.goto "https://bendtrails.org/"
-
-      # # Get all divs of class "trail_rating"
-        
-      # ratings = @@browser.divs(class: "trail_rating")
-
-      
-      # ratings.each do |rating|
-
-      #   # Get text in the span of class "rating"
-
-      #   skill_level = rating.span(class: "rating").text
-
-      #   # Get the href of the a
-
-      #   url = rating.a.href
-      # end 
-
-
-       
+        doc.css("div#trail_list_19").css("div.trail_row").each do |trail_row|
+          trail_name = trail_row.css("div.trail_name").text
+          condition = trail_row.css("div.trail_status").text 
+          length = trail_row.css("div.trail_length").text
+          elevation = trail_row.css("div.trail_elevation").text
+          trail_hash = {:trail => trail_name, :status => condition, :distance => length, :elevation => elevation}
+          trail_collection << trail_hash  
+          #binding.pry 
+        end
+      #end 
+        trail_list.shift
+        trail_collection.shift 
+        binding.pry 
     end 
   end
- 
-
-  # trail_url = trail_row.css("div.trail_rating").first.css("a").attribute("href").value
-  #skill_level = trail_row.css("div.trail_rating").text
-
+  
   Scraper.scrape_trail_list
+
+  def self.scrape_trail_rating
+
+    @@browser.goto 'https://bendtrails.org/'
+
+    ratings = @@browser.divs(class: 'trail_row')
+    ratings.each do |rating|
+      skill_level = rating.divs(class: 'trail_rating').text
+      #binding.pry  
+    end 
+  end
+  
+  #Scraper.scrape_trail_rating
+  
+  # .css("div.trail_group").css("h3.toggle").text                                       # This returns all the region names in one string
+  # doc.css("div#trail_list_19").css("div.trail_row").css("div.trail_name").text        # Same as above only with trail names
+
+
+  # doc.css("div#trail_list_view").css("div.trail_group").css("h3.toggle").text         # css selectors for regions data
+
+  # doc.css("div#trail_list_19").css("div.trail_row")                                   # css selectors fort collection of trails data to iterate over
+
+  # doc.css("div#trail_list_19").css("div.trail_row").css("div.trail_name").text        # css selectors for trail_name data
+
+  # doc.css("div#trail_list_19").css("div.trail_row").css("div.trail_status").text      # css selectors for trail_condition data
+
+  # doc.css("div#trail_list_19").css("div.trail_row").css("div.trail_length").text      # css selectors for trail_length data
+
+  # doc.css("div#trail_list_19").css("div.trail_row").css("div.trail_elevation").text   # css selectors for trail_elevation data
+
   
 
+  
+  # trail_url = trail_row.css("div.trail_rating").first.css("a").attribute("href").value
+  #skill_level = trail_row.css("div.trail_rating").text
 
   #copybara
   #watir
   #https://github.com/sparklemotion/nokogiri/wiki/Cheat-sheet
-
-  # 
 
     # doc.css("div#trail_list_19").css("div.trail_row").css("div.trail_name").text
     # name =
@@ -71,11 +92,6 @@ class Scraper
     # url =
         
     
-  
-   
-  
-  
-
   # #trail_list_19 > div:nth-child(3) > div.trail_rating > a > span
   
   # doc.css("div.trail_group#g_19")    
@@ -103,8 +119,7 @@ class Scraper
   #  doc.css("div#trail_list_19").css("div.trail_name").text.split 
 
 
-  # doc.css("div#trail_list_19").css("div.trail_row")     collection of trails to iterate over
-  # doc.css("div#trail_list_19").css("div.trail_row")[0].css("div.trail_name").text
+  
 
   #  doc.css("div#g_19").css("a").attribute("title").value
 
