@@ -5,11 +5,10 @@ class Trail
     @@all = []
 
 
-    def intialize (name)    # might incorporate mass assignment?
+    def intialize(name)    # might incorporate mass assignment?
         @name = name
         self.save
-
-    end
+    end  
     
     def self.all
         @@all
@@ -28,8 +27,8 @@ class Trail
         trail.save
     end 
 
-    def self.find_by_skill_level(skill_level)
-        self.all.detect {|trail| trail.skill_level == skill_level}
-    end 
+    # def self.find_by_skill_level(skill_level)
+    #     self.all.detect {|trail| trail.skill_level == skill_level}
+    # end 
 
 

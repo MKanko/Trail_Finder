@@ -1,11 +1,18 @@
 CLI Data Gem Portfolio Project
 
+### The most intimidating thing to a programmer is a blank file! (How and where to start) ###
+### Always want to start programming from the place where the user is going to interact with it. ###
+### User is going to type Trail_Finder and that command will "run" my program. ###
+
 CLI App Name: Trail Finder
 
-Description: CLI App for Mountain Bikers use in finding local Mountain Biking Trails to ride.
+Description: CLI App for Mountain Bikers use in finding local Mountain Biking Trails to ride that match their skill level.
 
 
 When Trail Finder runs it will:
+
+User types Trail_Finder --- This runs the program (file). So the "executable" the file the user is running, goes in the bin directory.
+So the first file you want to make is Trail_Finder and it goes in the bin directory. Mkae it in the bin directory!
 
 1. Welcome the user - with prompt instuctions for use to find mountain bike trails 
                       in the Bend area that match the users mountain biking 
@@ -44,7 +51,7 @@ class Scraper
 class SkillLevel        SkillLevel has many Trails
 class Trail             Trails belong to SkillLevel
 
-Note - scraping to create new objects (instances of class Trail) with the data scraped.
+Note - scraping to create new objects (instances of class Trail/instances of class SkillLevel) with the data scraped.
 
 
 

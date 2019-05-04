@@ -1,3 +1,12 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby 
 
-puts "Hello World!"
+# shabang line telling the operating system how to interpret the file using ruby
+# and given permisions to interpret the file using the - chmod +x trail-finder - 
+# command in terminal 
+                       
+#puts "Hello World!"   # test line of code #
+
+require './lib/Trail_E_Finder.rb'
+
+TrailFinder::CliController.new.call 
+

@@ -20,27 +20,31 @@ class Scraper
       # doc.css("div#trail_index").children.css("div.trail_group").each do |trail_group|    # This returns the first region name only, 
       #   region = trail_group.css("h3.toggle").text                                        # will not iterate because of JS toggle 
                                                                                             # event listener 
-        trail_list = []
-        trail_collection = []
+        # trail_list = []
+        # trail_collection = []
 
-        doc.css("div#trail_list_19").css("div.trail_row").each do |trail_row| 
-          trail_name = trail_row.css("div.trail_name").text 
-          trail_list << trail_name
-        end
+        # doc.css("div#trail_list_19").css("div.trail_row").each do |trail_row| 
+        #   trail_name = trail_row.css("div.trail_name").text 
+        #   trail_list << trail_name
+        # end
 
         doc.css("div#trail_list_19").css("div.trail_row").each do |trail_row|
           trail_name = trail_row.css("div.trail_name").text
+          trail_url = trail_row.css("div.trail_name a").attribute("href").value
+          binding.pry 
           condition = trail_row.css("div.trail_status").text 
           length = trail_row.css("div.trail_length").text
           elevation = trail_row.css("div.trail_elevation").text
-          trail_hash = {:trail => trail_name, :status => condition, :distance => length, :elevation => elevation}
-          trail_collection << trail_hash  
+          # trail_hash = {:trail => trail_name, :status => condition, :distance => length, :elevation => elevation}
+          # trail_collection << trail_hash  
+          # Trail.new(trail_name, condition, length, elevation) if trail_name != "Trail Name"
           #binding.pry 
         end
       #end 
-        trail_list.shift
-        trail_collection.shift 
-        binding.pry 
+        # trail_list.shift 
+        # trails = trail_collection.shift 
+        # Trail.new_from_collection(trails)
+        # binding.pry 
     end 
   end
   

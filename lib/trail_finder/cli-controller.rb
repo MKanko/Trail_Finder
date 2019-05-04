@@ -1,4 +1,6 @@
-class CliController
+# MVC architecture - model view controller, the controller is responsible for business logic or user interactions.
+
+class TrailFinder::CliController
 
     def call
         puts "Welcome to Trail Finder. This app will help you find great Mountain Biking Trails that match your skill level."
@@ -10,7 +12,7 @@ class CliController
         puts "Please select a skill level"
         puts "To quit enter 'exit'."
 
-        input = gets.strip
+        input = gets.strip 
 
         while input != "exit"
             list_matching_trails 
