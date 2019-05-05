@@ -6,7 +6,7 @@
                        
 #puts "Hello World!"   # test line of code #
 
-require './lib/Trail_E_Finder.rb'
+require './lib/trail_finder_environment.rb'
 
 TrailFinder::CliController.new.call 
 

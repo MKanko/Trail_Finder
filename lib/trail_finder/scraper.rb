@@ -28,26 +28,26 @@ class Scraper
         #   trail_list << trail_name
         # end
 
-        doc.css("div#trail_list_19").css("div.trail_row").each do |trail_row|
-          trail_name = trail_row.css("div.trail_name").text
-          trail_url = trail_row.css("div.trail_name a").attribute("href").value
+        doc.css("div#trail_list_19").css("div.trail_row").each do |tr|
+          trail_name = tr.css("div.trail_name").text 
+          #trail_url = tr.css("div.trail_name a").attribute("href").value if tr.css("div.trail_name a")
           binding.pry 
-          condition = trail_row.css("div.trail_status").text 
-          length = trail_row.css("div.trail_length").text
-          elevation = trail_row.css("div.trail_elevation").text
+          condition = tr.css("div.trail_status").text 
+          length = tr.css("div.trail_length").text
+          elevation = tr.css("div.trail_elevation").text
           # trail_hash = {:trail => trail_name, :status => condition, :distance => length, :elevation => elevation}
           # trail_collection << trail_hash  
           # Trail.new(trail_name, condition, length, elevation) if trail_name != "Trail Name"
           #binding.pry 
-        end
+        end 
       #end 
         # trail_list.shift 
         # trails = trail_collection.shift 
-        # Trail.new_from_collection(trails)
+        # Trail.new_from_collection(trail_collection)
         # binding.pry 
     end 
   end
-  
+  #doc.css("div#trail_list_19").css("div.trail_row").css("div.trail_name a").attribute("href").value
   Scraper.scrape_trail_list
 
   def self.scrape_trail_rating
