@@ -6,28 +6,33 @@ CLI Data Gem Portfolio Project
 
 CLI App Name: Trail Finder
 
-Description: CLI App for Mountain Bikers use in finding local Mountain Biking Trails to ride that match their skill level.
+Description: CLI App for Mountain Bikers use in finding local Mountain Biking Trails to ride.
 
 
 When Trail Finder runs it will:
 
-User types Trail_Finder --- This runs the program (file). So the "executable" the file the user is running, goes in the bin directory.
-So the first file you want to make is Trail_Finder and it goes in the bin directory. Mkae it in the bin directory!
+User types Trail_Finder --- This runs the program (file). So the "executable" (./bin/trail-finder) the file the user is running, goes in the bin directory.
+So the first file you want to make is Trail_Finder and it goes in the bin directory. Make it in the bin directory!
 
-1. Welcome the user - with prompt instuctions for use to find mountain bike trails 
-                      in the Bend area that match the users mountain biking 
-                      skill level.
+1. Welcome the user - with instuctions for use to find mountain bike trails 
+                      in the Bend area.
 
-2. Prompt user to select their skill level - beginner, intermediate, expert.
+2. Prompt user to select/enter "List Trails".
 
-3. List mountain biking trails, by name, that match the users skill level selection.
+3. Return a list of mountain biking trails in the Bend area.
 
-4. Prompt the user to select option "Trail Information" for each listed trail. 
+4. Prompt user to select/enter "Trail Name - Information" for information about the trail the user is interested in. 
 
-5. List information about a specific trail, to include trail length, condition
-   (open/closed, riding well), elevation, and physical description of trail.
+5. List information about the selected trail, to include trail condition,
+   (open/closed, riding well), trail length, and trail elevation.
 
-6. Prompt user to exit?
+6. Prompt user to select/enter "Trail Name - Description" for a detailed description of the trail the user is interested in.
+
+7. Return detailed description of the trail selected.
+
+8. Prompt user to select/enter another "Trail Name - Information" or select/enter "exit" to quit app. 
+
+6. Thank the user for using Trail Finder and "Have a great ride!
 
 
 
@@ -48,10 +53,18 @@ Trail Finder Domain:
 
 class CLIController
 class Scraper
-class SkillLevel        SkillLevel has many Trails
-class Trail             Trails belong to SkillLevel
+class Trail             
 
 Note - scraping to create new objects (instances of class Trail/instances of class SkillLevel) with the data scraped.
+
+What is a trail?
+
+A trail has a name
+A trail has a condition
+A trail has a length 
+A trail has an elevation
+A trail has an url 
+A trail has a description
 
 
 
@@ -79,14 +92,10 @@ The core of the project is:
 
 object orientation
 object collaboration
-scraping to create new objects with the data acquired
+using data (scraped) to create new objects with the data acquired
 
 Supporting Website: https://bendtrails.org/
 
 Focus on "East of Bend" section only.
 
-HTML Code Div Structure:
 
-Trail Group
-   Trail List
-      Trail Row

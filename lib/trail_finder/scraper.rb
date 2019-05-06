@@ -1,10 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
-require 'webdrivers'
-require 'watir'
 
-class Scraper
+class TrailFinder::Scraper 
 
   def self.scrape_trail_list
 
@@ -41,7 +39,7 @@ class Scraper
   end
 end 
 
-#Scraper.scrape_trail_description
+#Scraper.scrape_trail_description 
   
 
   # doc.css("div#trail_list_view").css("div.trail_group").css("h3.toggle").text         # css selectors for regions data

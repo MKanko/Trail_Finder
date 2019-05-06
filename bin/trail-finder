@@ -6,7 +6,7 @@
                        
 #puts "Hello World!"   # test line of code #
 
-require './lib/trail_finder_environment.rb'
+require_relative  '../lib/trail_finder.rb'   # Program entry point, anything that needs my environment can load it with this one line call.
 
-TrailFinder::CliController.new.call 
+TrailFinder::CliController.new.call          # Creates a new instance of CliController and calls the call method on that instance which starts the program running.
 

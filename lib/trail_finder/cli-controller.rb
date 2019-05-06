@@ -3,48 +3,59 @@
 class TrailFinder::CliController
 
     def call
-        puts "Welcome to Trail Finder. This app will help you find great Mountain Biking Trails that match your skill level."
-        puts "----------"
-        puts "To select beginner skill level, enter '1'."
-        puts "To select intermediate skill level, enter '2'."
-        puts "To select expert skill level, enter '3'."
-        puts "----------"
-        puts "Please select a skill level"
-        puts "To quit enter 'exit'."
-
-        input = gets.strip 
-
-        while input != "exit"
-            list_matching_trails 
-
-            puts "For a descrition of the trail you are interested in, enter 'Trail Name'."
-
-            input = gets.strip
-            list_trail_description
-
-            puts "For another description of a trail you are interested in, enter 'Trail Name' or enter 'exit' to quit."
-            
-            input = gets.strip
-
-            if input == "Trail Name"
-                list_trail_description
-            elsif 
-                puts "Thank you for using Trail Finder, have a great ride!"
-
-            end
-        end 
+        welcome 
+        list_trails
+        menu
+        goodbye
     end 
 
+    def welcome
+        puts "Welcome to Trail Finder. This app will provide information about available Mountain Biking Trails in the Bend area."
+        puts "---------------"
+    end 
 
-    def list_matching_trails  
+    def list_trails
+        puts "---------------" 
+        puts "Bend Trails:"
+        puts "---------------"
+        puts "1. Arnold Ice Cave, 2. Boyd Cave Trail, 3. Coyote Loop."
+        puts "---------------"
+        
+        @trails = TrailFinder::Trail.trails 
+    end 
 
+    def menu
+        input = nil
+        while input != "exit"
+            puts "Enter the number of the trail you would like to see more information about, or type 'list trails' to view trails, or type 'exit'."
+            puts "---------------"
+            input = gets.strip.downcase
+
+            case input
+            when "1"
+                puts "This trail is Awesome! - condition, length, and elevation"
+                puts "---------------" 
+            when "2"
+                puts "This trail Rocks! - condition, length, elevation"
+                puts "---------------"
+            when "3"
+                puts "This trail is Rad! - condition, length, elevation"
+                puts "---------------"
+            when "list trails" 
+                list_trails
+            else 
+                puts "Invalid selection." 
+                puts "---------------"  
+            end 
+        end 
     end
     
-    def list_trail_description 
-
+    def goodbye
+        puts "Thank you for using Trail Finder, have a great ride! Goodbye."
     end 
-
 end 
+ 
+
 
         
 
