@@ -3,7 +3,8 @@
 class TrailFinder::CliController
 
     def call
-        welcome 
+        welcome
+        TrailFinder::Scraper.scrape_trail_list  
         list_trails
         menu
         goodbye
@@ -15,13 +16,15 @@ class TrailFinder::CliController
     end 
 
     def list_trails
+        @trails = TrailFinder::Trail.all
+        binding.pry 
         puts "---------------" 
         puts "Bend Trails:"
         puts "---------------"
         puts "1. Arnold Ice Cave, 2. Boyd Cave Trail, 3. Coyote Loop."
         puts "---------------"
         
-        @trails = TrailFinder::Trail.trails 
+         
     end 
 
     def menu

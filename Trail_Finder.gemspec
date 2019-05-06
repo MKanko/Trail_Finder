@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Mark Kanko"]
   spec.email         = ["mkanko66@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Trail_Finder is an app for mountain bikers use to find information about trails in the Bend area.}
+  spec.description   = %q{Trail_Finder will list available mount biking trails in the Bend area and provide informmation about each trail selected from the list and provide a detailed trail description for each selected trail.}
+  spec.homepage      = "https://github.com/MKanko/Trail_Finder"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

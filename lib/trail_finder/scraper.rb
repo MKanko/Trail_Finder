@@ -1,6 +1,6 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
+# require 'nokogiri'
+# require 'open-uri'
+# require 'pry'
 
 class TrailFinder::Scraper 
 
@@ -11,35 +11,38 @@ class TrailFinder::Scraper
 
       doc = Nokogiri::HTML(open("https://bendtrails.org/"))
 
-          doc.css("div#trail_list_19").css("div.trail_row.list_awesome").each do |awesome|
+          doc.css("div#trail_list_19").css("div.trail_row").each do |awesome|
               trail_name = awesome.css("div.trail_name").text 
               condition = awesome.css("div.trail_status").text 
               length = awesome.css("div.trail_length").text
               elevation = awesome.css("div.trail_elevation").text
-              trail_url = awesome.css("div.trail_name a").attribute("href").value 
+              trail_url = awesome.css("div.trail_name a").attr("href").value if trail_name != "Trail Name"
 
-              trail_collection = {:trail => trail_name, :status => condition, :distance => length, :elevation => elevation, :trail_url => trail_url}
-                
+
+              #trail_collection = {:trail => trail_name, :status => condition, :distance => length, :elevation => elevation, :trail_url => trail_url}
+            
+              TrailFinder::Trail.new(trail_name, condition, length, elevation, trail_url) if trail_name != "Trail Name" 
               #Trail.new_from_collection(trail_collection)
               #binding.pry  
           end 
               
   end
 
-  # Trail.new(trail_name, condition, length, elevation) if trail_name != "Trail Name"
+  
   
   #Scraper.scrape_trail_list
 
-  def self.scrape_trail_description
+  def self.scrape_trail_description(trail) 
     
-      doc = Nokogiri::HTML(open("https://bendtrails.org/trail/golden-basin/"))
+      doc = Nokogiri::HTML(open(trail.url))
 
       trail_description = doc.css("div#trail_post_content").css("div.trail_description p").text.gsub(/\n/, "")  
-    #binding.pry 
+    binding.pry 
   end
-end 
+end
 
-#Scraper.scrape_trail_description 
+#fake_trail = {"url": "https://bendtrails.org/trail/arnold-ice-cave/"}
+#TrailFinder::Scraper.scrape_trail_description(Trail.all[0]) 
   
 
   # doc.css("div#trail_list_view").css("div.trail_group").css("h3.toggle").text         # css selectors for regions data
