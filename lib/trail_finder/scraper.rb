@@ -18,27 +18,23 @@ class TrailFinder::Scraper
               elevation = awesome.css("div.trail_elevation").text
               trail_url = awesome.css("div.trail_name a").attr("href").value if trail_name != "Trail Name"
 
-
-              #trail_collection = {:trail => trail_name, :status => condition, :distance => length, :elevation => elevation, :trail_url => trail_url}
-            
               TrailFinder::Trail.new(trail_name, condition, length, elevation, trail_url) if trail_name != "Trail Name" 
-              #Trail.new_from_collection(trail_collection)
               #binding.pry  
           end 
-              
   end
 
-  
-  
+  #trail_collection = {:trail => trail_name, :status => condition, :distance => length, :elevation => elevation, :trail_url => trail_url}
+  #Trail.new_from_collection(trail_collection)
   #Scraper.scrape_trail_list
 
-  def self.scrape_trail_description(trail) 
+  def self.scrape_trail_description(trail)  
+    #binding.pry  
     
       doc = Nokogiri::HTML(open(trail.url))
 
-      trail_description = doc.css("div#trail_post_content").css("div.trail_description p").text.gsub(/\n/, "")  
-    binding.pry 
-  end
+      trail.description = doc.css("div#trail_post_content").css("div.trail_description p").text.gsub(/\n/, "")  
+    #binding.pry 
+  end 
 end
 
 #fake_trail = {"url": "https://bendtrails.org/trail/arnold-ice-cave/"}

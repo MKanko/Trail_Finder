@@ -6,55 +6,77 @@ class TrailFinder::CliController
         welcome
         TrailFinder::Scraper.scrape_trail_list  
         list_trails
+        list_description 
         menu
-        goodbye
+        
     end 
 
     def welcome
+        puts "" 
         puts "Welcome to Trail Finder. This app will provide information about available Mountain Biking Trails in the Bend area."
-        puts "---------------"
+        
     end 
 
     def list_trails
-        @trails = TrailFinder::Trail.all
-        binding.pry 
-        puts "---------------" 
+        puts "" 
         puts "Bend Trails:"
         puts "---------------"
-        puts "1. Arnold Ice Cave, 2. Boyd Cave Trail, 3. Coyote Loop."
-        puts "---------------"
-        
-         
+        @trails = TrailFinder::Trail.all
+        @trails.each.with_index(1) do |trail, index|
+            puts "#{index}. #{trail.name}"
+        end 
+    end
+    
+    def list_description
+        @trails.each do |trail|
+            TrailFinder::Scraper.scrape_trail_description(trail)
+            trail.description  
+            #binding.pry 
+        end 
     end 
 
     def menu
+        
         input = nil
         while input != "exit"
-            puts "Enter the number of the trail you would like to see more information about, or type 'list trails' to view trails, or type 'exit'."
+            puts "" 
             puts "---------------"
+            puts ""
+            puts "Enter the number of the trail you would like to see more information about or type 'list trails' to see the trail list."
+            puts ""
+            puts "You may type 'exit' at any time to quit."
+            puts ""
+
             input = gets.strip.downcase
 
-            case input
-            when "1"
-                puts "This trail is Awesome! - condition, length, and elevation"
-                puts "---------------" 
-            when "2"
-                puts "This trail Rocks! - condition, length, elevation"
-                puts "---------------"
-            when "3"
-                puts "This trail is Rad! - condition, length, elevation"
-                puts "---------------"
-            when "list trails" 
+            if input.to_i > 0 && input.to_i <= 16 
+                trail = @trails[input.to_i-1] 
+                puts "" 
+                puts "#{trail.name} - Trail Condition: #{trail.condition} - Trail Length: #{trail.length} - Trail Elevation: #{trail.elevation}"
+                puts ""
+                puts "If you would like to see a detailed description of this trail, type 'description'."
+                puts "" 
+            elsif input == "description"
+                puts ""
+                puts "#{trail.name}:"
+                puts ""
+                puts "#{trail.description}"   
+            elsif input == "list trails"
                 list_trails
-            else 
+            elsif input == "exit"
+                puts ""
+                goodbye 
+            else
+                puts "" 
                 puts "Invalid selection." 
-                puts "---------------"  
+            
             end 
         end 
     end
     
     def goodbye
         puts "Thank you for using Trail Finder, have a great ride! Goodbye."
+        puts "" 
     end 
 end 
  
