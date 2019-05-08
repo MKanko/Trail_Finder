@@ -4,9 +4,10 @@ class TrailFinder::CliController
 
     def call
         welcome
-        TrailFinder::Scraper.scrape_trail_list  
+        #TrailFinder::Scraper.scrape_trail_list
         list_trails
-        list_description 
+        # list_trails_by_distance 
+        # list_description 
         menu
         
     end 
@@ -18,38 +19,68 @@ class TrailFinder::CliController
     end 
 
     def list_trails
+        TrailFinder::Scraper.scrape_trail_list 
         puts "" 
         puts "Bend Trails:"
         puts "---------------"
         @trails = TrailFinder::Trail.all
         @trails.each.with_index(1) do |trail, index|
             puts "#{index}. #{trail.name}"
+            #binding.pry 
         end 
     end
-    
+
+    def list_trails_by_distance
+        #binding.pry 
+        @trails = TrailFinder::Trail.all 
+        @trails.each.with_index(1) do |trail, index|
+            if (0..5).include?(trail.length.to_i)  
+                puts "#{index}. #{trail.name}"
+            elsif (5..10).include?(trail.length.to_i)
+                puts "#{index}. #{trail.name}"
+            elsif (10..25).include?(trail.length.to_i)    
+                puts "#{index}. #{trail.name}"
+            end 
+        end
+    end
+
     def list_description
+        
+        @trails = TrailFinder::Trail.all
         @trails.each do |trail|
-            TrailFinder::Scraper.scrape_trail_description(trail)
-            trail.description  
+        TrailFinder::Scraper.scrape_trail_description(trail)  
+            puts "#{trail.description}"   
             #binding.pry 
         end 
     end 
 
     def menu
-        
         input = nil
         while input != "exit"
             puts "" 
             puts "---------------"
             puts ""
-            puts "Enter the number of the trail you would like to see more information about or type 'list trails' to see the trail list."
+            puts "How far would you line to ride today?"
+            puts ""
+            puts "If you would like a ride under 5 miles, type 'short ride'. If you would like a ride between 5-10 miles, type 'medium ride'. If you would like a ride over 10 miles, type 'long ride' or type 'list trails' to see all trails."
+            #puts "Enter the number of the trail you would like to see more information about or type 'list trails' to see the trail list."
             puts ""
             puts "You may type 'exit' at any time to quit."
             puts ""
 
             input = gets.strip.downcase
 
-            if input.to_i > 0 && input.to_i <= 16 
+            if input == "short ride"
+                list_trails_by_distance
+                puts "Enter the number of the trail you would like to see more information about or type 'list trails' to see the trail list."
+            elsif input == "medium ride"
+                list_trails_by_distance
+                puts "Enter the number of the trail you would like to see more information about or type 'list trails' to see the trail list."
+            elsif input == "long ride"
+                list_trails_by_distance
+                puts "Enter the number of the trail you would like to see more information about or type 'list trails' to see the trail list."
+            
+            elsif input.to_i > 0 && input.to_i <= 16 
                 trail = @trails[input.to_i-1] 
                 puts "" 
                 puts "#{trail.name} - Trail Condition: #{trail.condition} - Trail Length: #{trail.length} - Trail Elevation: #{trail.elevation}"
@@ -58,9 +89,9 @@ class TrailFinder::CliController
                 puts "" 
             elsif input == "description"
                 puts ""
-                puts "#{trail.name}:"
+                puts "#{trail.name}:" 
                 puts ""
-                puts "#{trail.description}"   
+                list_description    
             elsif input == "list trails"
                 list_trails
             elsif input == "exit"
