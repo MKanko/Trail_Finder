@@ -5,10 +5,9 @@ class TrailFinder::CliController
     def call
         welcome
         TrailFinder::Scraper.scrape_trail_list
-        
         list_trails
-        # list_trails_by_distance 
-        list_description 
+        #list_trails_by_distance 
+        #list_description 
         menu
         
     end 
@@ -47,15 +46,15 @@ class TrailFinder::CliController
     #     end
     # end
 
-    def list_description
+    # def list_description
           
-        #@trails = TrailFinder::Trail.all
-        @trails.each do |trail|
-            TrailFinder::Scraper.scrape_trail_description(trail) 
-            trail.description     
-            #binding.pry 
-        end 
-    end 
+    #     #@trails = TrailFinder::Trail.all
+    #     @trails.each do |trail|
+    #         TrailFinder::Scraper.scrape_trail_description(trail) 
+    #         trail.description     
+    #         #binding.pry 
+    #     end 
+    # end 
 
     def menu
         puts ""
@@ -86,9 +85,10 @@ class TrailFinder::CliController
             # elsif input == "long ride"
             #     list_trails_by_distance
             #     puts "Enter the number of the trail you would like to see more information about or type 'list trails' to see the trail list."
-            
+             
             if input.to_i > 0 && input.to_i <= 16 
                 trail = @trails[input.to_i-1] 
+                TrailFinder::Scraper.scrape_trail_description(trail) 
                 puts "" 
                 puts "#{trail.name} - Trail Condition: #{trail.condition} - Trail Length: #{trail.length} - Trail Elevation: #{trail.elevation}"
                 puts ""
