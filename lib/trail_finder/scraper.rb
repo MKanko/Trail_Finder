@@ -14,7 +14,7 @@ class TrailFinder::Scraper
           doc.css("div#trail_list_19").css("div.trail_row").each do |awesome|
               trail_name = awesome.css("div.trail_name").text 
               condition = awesome.css("div.trail_status").text 
-              length = awesome.css("div.trail_length").text.gsub(/miles/, "")
+              length = awesome.css("div.trail_length").text.gsub(/[~ miles]/, "") 
               elevation = awesome.css("div.trail_elevation").text.gsub(/elevation/, "") 
               trail_url = awesome.css("div.trail_name a").attr("href").value if trail_name != "Trail Name"
 
@@ -29,7 +29,7 @@ class TrailFinder::Scraper
 
   def self.scrape_trail_description(trail)  
       doc = Nokogiri::HTML(open(trail.url))
-      trail.description = doc.css("div#trail_post_content").css("div.trail_description p").text.gsub(/\n/, "")  
+      description = doc.css("div#trail_post_content").css("div.trail_description p").text.gsub(/\n/, "")  
     #binding.pry 
   end 
 end
