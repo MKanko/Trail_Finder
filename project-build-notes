@@ -2,7 +2,7 @@ CLI Data Gem Portfolio Project
 
 ### The most intimidating thing to a programmer is a blank file! (How and where to start) ###
 ### Always want to start programming from the place where the user is going to interact with it. ###
-### User is going to type Trail_Finder and that command will "run" my program. ###
+### User is going to type ./bin/trail-finder and that command will "run" my program. ###
 
 CLI App Name: Trail Finder
 
@@ -11,26 +11,27 @@ Description: CLI App for Mountain Bikers use in finding local Mountain Biking Tr
 
 When Trail Finder runs it will:
 
-User types Trail_Finder --- This runs the program (file). So the "executable" (./bin/trail-finder) the file the user is running, goes in the bin directory.
-So the first file you want to make is Trail_Finder and it goes in the bin directory. Make it in the bin directory!
+User types ./bin/trail-finder --- This runs the program (file). So the "executable" (./bin/trail-finder) the file the user is running, goes in the bin directory.
+So the first file you want to make is trail-finder and it goes in the bin directory. Make it in the bin directory!
 
 1. Welcome the user - with instuctions for use to find mountain bike trails 
                       in the Bend area.
 
-2. Prompt user to select/enter "List Trails".
+2. Prompt user to select/enter the distance they would like to ride (short, medium, long) or list trails (to view all trails).
 
-3. Return a list of mountain biking trails in the Bend area.
+3. Return a list of trails that match the users trai length input, short (0-5 miles), medium (bewtween 5-10 mile) and long(over 10 miles),
+or return a list of all trails.
 
-4. Prompt user to select/enter "Trail Name - Information" for information about the trail the user is interested in. 
+4. Prompt user to select/enter the number of a trail to view information about the trail the user is interested in. 
 
 5. List information about the selected trail, to include trail condition,
    (open/closed, riding well), trail length, and trail elevation.
 
-6. Prompt user to select/enter "Trail Name - Description" for a detailed description of the trail the user is interested in.
+6. Prompt user to type 'description' to view a detailed description of the trail (last trail selected) the user is interested in.
 
 7. Return detailed description of the trail selected.
 
-8. Prompt user to select/enter another "Trail Name - Information" or select/enter "exit" to quit app. 
+8. Prompt user to select/enter the number of another trail, select a different distance, list trails or select/enter "exit" to quit app. 
 
 6. Thank the user for using Trail Finder and "Have a great ride!
 
@@ -74,15 +75,14 @@ Keep it simple but effective in meeting requirements.
 
 Remember the single responsibility principle. Each piece of code -
 method, class, etc. is responsible for one thing. The CLI Controller 
-is resposible for interfacing with the user, if you are puts or gets
+is resposible for interfacing with the user. For example, if you are puts or gets
 input anywhere else in the program, you are violating the single
 responsibility principle.
 
 Build the CLI first using hard coded fake data. The CLI will determine
 needs and how to build the other models in the domain.
 
-Use Colorize gem to color the text of the trail names according to skill level
-beginner-green, intermediate-blue, expert-red.
+Use Colorize gem to color the text to differentiate (visual separation) between prompts, information returned (outputted), and headers.
 
 Write code that is prepared to deal with nonsense text, negative numbers,
 blank or incorrect input. During project assessment they will try to 

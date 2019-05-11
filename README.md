@@ -1,8 +1,6 @@
 # Trail Finder
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Trail_Finder`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Trail Finder is a CLI App for vacationing Mountain Bikers use in finding Mountain Biking Trails to ride in the Bend Oregon area.Trail Finder provides to the user, through interactive prompts, lists of available Mountain Biking Trails, information about selected trails, and detailed descriptions of selected trails. 
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Start the program by running the executable file ./bin/trail-finder, you will be greeted with a welcome message which provides a brief instruction to get started. You have the option of selecting trails from a list based on how far you would like to ride, and then selecting a trail, from the list, by number to access information about that trail. Once you have viewed the trail information, you will be prompted with the option to type the description command to view a detailed description of the trail selected. You can also select trails directly from the list of all available trails in the Bend area and follow the interactive prompts to see trail information and description as described above. Basically, just follow the interactive prompts and have fun with it.
 
 ## Development
 

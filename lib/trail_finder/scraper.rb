@@ -12,12 +12,14 @@ class TrailFinder::Scraper
           trail_url = awesome.css("div.trail_name a").attr("href").value if trail_name != "Trail Name"
 
           TrailFinder::Trail.new(trail_name, condition, length, elevation, trail_url) if trail_name != "Trail Name"   
-        end 
+      end 
   end
 
-  def self.scrape_trail_description(trail)  
-      doc = Nokogiri::HTML(open(trail.url))
-      trail.description = doc.css("div#trail_post_content").css("div.trail_description p").text.gsub(/\n/, "")   
+  def self.scrape_trail_description(trail)
+
+    doc = Nokogiri::HTML(open(trail.url))
+
+    trail.description = doc.css("div#trail_post_content").css("div.trail_description p").text.gsub(/\n/, "")   
   end
 
 end
@@ -27,7 +29,7 @@ end
 
   # doc.css("div#trail_list_view").css("div.trail_group").css("h3.toggle").text         # css selectors for regions data
 
-  # doc.css("div#trail_list_19").css("div.trail_row")                                   # css selectors fort collection of trails data to iterate over
+  # doc.css("div#trail_list_19").css("div.trail_row")                                   # css selectors for collection of trails data to iterate over
 
   # doc.css("div#trail_list_19").css("div.trail_row").css("div.trail_name").text        # css selectors for trail_name data
 
