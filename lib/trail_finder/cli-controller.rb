@@ -17,7 +17,7 @@ class TrailFinder::CliController
         puts "" 
         puts "Welcome to Trail Finder. This app will provide information about available Mountain Biking Trails in the Bend area.
 You have the option of selecting trails from a list based on how far you would like to ride, or selecting trails from a list of all
-available trails in the Bend area. All selection commands are available at any time. Follow the prompts and have fun!".light_blue      
+available trails in the Bend area. Follow the interactive prompts and have fun!".light_blue      
         puts ""       
     end 
 

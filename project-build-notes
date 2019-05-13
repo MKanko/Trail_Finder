@@ -8,6 +8,10 @@ CLI App Name: Trail Finder
 
 Description: CLI App for Mountain Bikers use in finding local Mountain Biking Trails to ride.
 
+“Build an app that uses collaborating object classes to interact with a user, acquire external data on request, 
+use that data to create instances of objects with attributes and store those “smart” objects for use, and then 
+return those objects, which know their attributes, to provide information, on demand, in a practical way to the user."
+
 
 When Trail Finder runs it will:
 
